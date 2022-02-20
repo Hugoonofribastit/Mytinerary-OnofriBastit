@@ -1,38 +1,222 @@
-.App {
-  text-align: center;
+
+
+.NavBar {
+ 
+  background-color: rgb(13, 28, 83) !important;
+  
+  width: 100%;
+   
+}
+.css-19r6kue-MuiContainer-root{
+  padding-left: 0 !important;
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  
+  padding-left: 0 !important;
+  background-color: rgb(13, 28, 83) !important;
+  height: 8.5rem;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.userlogo{
+  height: 3.5rem;
+  width: auto;
+  margin-left: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+.cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.link{
+  text-decoration: none;
+  color: white;
+}
+.linkresp{
+  text-decoration: none;
+  color:black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.imgText{
+ color: tomato;
+ font-weight: bold;
+ font-size: x-large;
+ border: solid 2px black
+
+}
+
+.imgMain{
+   background-image: url("./components/assets/fondoMain.jpg");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   background-position:center;
+   height:80vh ;
+   width: 100%;
+}
+
+.logo{
+  height: 6rem;
+  width: auto;
+}
+
+.imgCities{
+  background-image: url("./components/assets/underconstruction.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height:100vh ;
+  width: 100%;
+}
+
+/* @media (max-width: 755px) {
+  .imgMain{
+    height: 30vh;
+    background-image: url("./components/assets/fondoMain2.jpg");
+}
+} */
+
+
+.gallery{
+  width: 60vw;
+  height: auto;
+}
+
+.sc-dnqmqq{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+
+
+.image {
+  position: relative;
+  width: 100%;
+}
+
+.image__img {
+  display: block;
+  
+  height: auto;
+  width: 100%;
+}
+
+.image__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+
+.image__overlay > * {
+  transform: translateY(20px);
+  transition: transform 0.25s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.image__overlay:hover {
+  opacity: 1;
 }
+
+.image__overlay:hover > * {
+  transform: translateY(0);
+}
+
+.image__title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.textCarr{
+  color:#0d1c53
+}
+.textItinerary{
+  font-size: 2rem;
+}
+
+.botonMain{
+  width: 18rem;
+  height: 7,2rem;
+  color: azure;
+  background-color: #3c32c291;
+  border: solid 3px rgba(255, 255, 255, 0.794);
+  font-size: x-large;
+}
+
+.botonMain:hover{
+  color: #3c32c2;
+  background-color: azure;
+  
+}
+
+.boxnav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.link{
+  color: aliceblue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.textoinicio{
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px black;
+}
+
+.navorder{
+  display: flex;
+  align-items: center;
+}
+
+.piedepagina{
+  min-height: 30vh;
+  width: 100%;
+  background-color: rgb(13, 28, 83) !important;
+  flex-wrap: wrap;
+
+}
+
+.logofoot{
+  height: 22rem;
+}
+
+.navnav{
+  min-height: 4vh;
+  width: 100%;
+  background-color: rgb(2, 7, 27) !important;
+}
+
+@media (max-width: 850px) {
+  .logofoot{
+    height: 11rem;
+  }
+} 
+
+@media (max-width: 575px) {
+  .logofoot{
+    display:none;
+  }
+} 
