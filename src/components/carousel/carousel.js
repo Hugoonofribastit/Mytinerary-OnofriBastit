@@ -13,17 +13,24 @@ import datos from "../datos"
       </Row>
       <Row className="justify-content-center mt-5 mb-5">
         <Col>
-          <Carousel cols={2} rows={2} gap={10} loop
+          <Carousel cols={2} rows={2} gap={10} autoplay={3000} loop
                   responsiveLayout={[
                     {
                       breakpoint: 1200,
                       cols: 2,
                       rows: 2,
+                      loop: true,
+                      autoplay: 3000,
+                     
                       
                     },
                     {
                       breakpoint: 985,
                       cols: 1,
+                      loop: true,
+                      autoplay:3000,
+                      
+                      
                     },
                   
                   ]}
