@@ -210,14 +210,21 @@
   background-color: rgb(2, 7, 27) !important;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 890px) {
   .logofoot{
     height: 11rem;
   }
 } 
 
-@media (max-width: 629px) {
+@media (max-width: 715px) {
   .logofoot{
     display:none;
   }
 } 
+
+.botonNav{
+  text-decoration: none;
+  border: none;
+  background-color: #0d1c53;
+  color: white;
+}

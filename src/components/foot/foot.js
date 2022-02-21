@@ -1,6 +1,7 @@
 import React from 'react';
 import logofoot from "../assets/logo.png";
 import * as ReactBootstrap from "react-bootstrap";
+import {Link as LinkRouter} from "react-router-dom"
 
 
 const Foot = () =>{
@@ -17,11 +18,20 @@ return(
 </div> 
 
 <div className="text-white me-3">
-<h2 className="mb-5 mt-3">Policies</h2>
-<p>Legal Warning</p>
-<p>Privacy Policy</p>
-<p>Cookies Policy</p>
-<p>Quality Policy</p>
+<h2 className="mb-5 mt-3">Navigation</h2>
+       <div className='d-flex flex-column'>
+       <LinkRouter to="/" className='link'>
+        <button className='botonNav'>
+           HOME
+        </button>
+        </LinkRouter>
+        <LinkRouter to="cities" className='link'>
+        <button className='botonNav'>
+           CITIES
+        </button>
+        </LinkRouter>
+       </div>
+        
 </div>
   
 </div>
