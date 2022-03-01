@@ -22,9 +22,9 @@ export default function Cities() {
       });
   };
 
-  const cambioBusqueda = (buscando) => {
-    setBusqueda(buscando.target.value);
-    filtrarBusqueda(buscando.target.value);
+  const searching = (search) => {
+    setBusqueda(search.target.value);
+    filtrarBusqueda(search.target.value);
   };
 
   const filtrarBusqueda = (terminoBusqueda) => {
@@ -48,7 +48,7 @@ export default function Cities() {
   return (
     <>
      
-      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5 vh">
         
       
      
@@ -57,42 +57,45 @@ export default function Cities() {
           <p className="me-5" >Look for your next destination!</p>
           <input
             className="inputsearch"
-            placeholder="Search City or Country"
+            placeholder="type your destination"
             value={busqueda}
-            onChange={cambioBusqueda}
+            onChange={searching}
           />
         </div>
-      <section>
-        {ciudades.map((ciudad) => (
-
-<div className="container-fluid py-3 cont ">
-    <div className="d-flex justify-content-between flex-wrap">
-        <div className="card float ">
-            <div className="row d-flex flex-wrap carta">
-                <div className="col-sm-5">
-                    <img className="imgcard img-fluid mt-3 mb-3" src={process.env.PUBLIC_URL+ `/imagenes/${ciudad.image}`} />
-                </div>
-                <div className="col-sm-7">
-                    <div className="card-block">
-                        <h3 className="titulocard text-center mt-2">{ciudad.name} </h3>
-                        <p className="text-just me-3">{ciudad.description}</p>
-                        <LinkRouter to="/detalles" className='link'>
-                        <div className="text-center"><button className="btn btn-card btn-primary mb-3 text-center">More Details</button></div>
-                        </LinkRouter>
-                       
+        <section className="conteinercard">
+        {ciudades.length !== 0 ? (
+          ciudades.map((ciudad) => (
+            <div className="container-fluid py-3 cont ">
+            <div className="d-flex justify-content-between flex-wrap">
+                <div className="card float ">
+                    <div className="row d-flex flex-wrap carta">
+                        <div className="col-sm-5">
+                            <img className="imgcard img-fluid mt-3 mb-3" src={process.env.PUBLIC_URL+ `/imagenes/${ciudad.image}`} />
+                        </div>
+                        <div className="col-sm-7">
+                            <div className="card-block">
+                                <h3 className="titulocard text-center mt-2">{ciudad.name} </h3>
+                                <p className="text-just me-3">{ciudad.description}</p>
+                                <LinkRouter to="/detalles" className='link'>
+                                <div className="text-center"><button className="btn btn-card btn-primary mb-3 text-center">More Details</button></div>
+                                </LinkRouter>
+                               
+                            </div>
+                        </div>          
                     </div>
-                </div>          
+                </div>    
             </div>
-        </div>    
-    </div>
-</div>
-
-
-
-
-        ))}
+        </div>
+          ))
+        ) : (
+          <h2 className="title h2 text-center textCarr">We do not currently have the destination you were looking for.</h2>
+        )}
       </section>
       </div>
     </>
   );
 }
+
+
+
+

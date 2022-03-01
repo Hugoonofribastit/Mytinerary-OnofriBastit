@@ -280,3 +280,7 @@ margin-top: auto;
 .cont{
   max-width: 75%;
 }
+
+.vh{
+  min-height: 80vh;
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import logofoot from "../assets/logo.png";
-import * as ReactBootstrap from "react-bootstrap";
 import {Link as LinkRouter} from "react-router-dom"
 
 
@@ -8,7 +7,7 @@ const Foot = () =>{
 return(
 <div>
 <div className='d-flex p-5 justify-content-between piedepagina align-items-center'>
-<img className="logofoot" src={logofoot} />
+<img className="logofoot" src={logofoot} alt="img"/>
 
 <div className="text-white">
     <h2 className="mb-5">Contacto</h2>

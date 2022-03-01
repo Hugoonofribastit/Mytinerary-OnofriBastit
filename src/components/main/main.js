@@ -1,5 +1,4 @@
 import React from 'react'
-import {Col,Row, Container, Button} from "react-bootstrap";
 import {Link as LinkRouter} from "react-router-dom"
 
 const Main = () =>{
