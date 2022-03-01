@@ -36,48 +36,6 @@ const NavBar = () => {
         <Toolbar disableGutters>
        
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              
-              <MenuItem>
-               <LinkRouter to="carrousel" className='linkresp'> Cities </LinkRouter>
-              </MenuItem>
-              <MenuItem>
-                <LinkRouter to="cards" className='linkresp'>LogIn</LinkRouter>
-              </MenuItem>
-              <MenuItem>
-                <LinkRouter to="lamp" className='linkresp'>SignUp</LinkRouter>
-              </MenuItem>
-
-            </Menu> */}
-          </Box>
      
           
           <Box className='boxnav NavBar' sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex'} }}>

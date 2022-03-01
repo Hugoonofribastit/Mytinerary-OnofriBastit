@@ -5,17 +5,20 @@ import Nav from '../src/components/nav/nav';
 import Main from '../src/components/main/main'; 
 import Carousel from '../src/components/carousel/carousel'
 import Cities from '../src/components/cities/cities'
+import Detalles from '../src/components/detalles/detalles'
 import Home from '../src/components/Home/home'
 import Foot from './components/foot/foot' 
+import Cards from './components/cards/cards' 
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
-/* const Header=() =><p>Hola,soy un header</p>;
 
-const Main= ()=> <p>Hola desde el main 🙌</p>; */
 
 
 const App= ()=> {
-
+ 
+  
   return (
     
     <BrowserRouter>
@@ -24,7 +27,9 @@ const App= ()=> {
    
           <Routes>
           <Route path="/" element={<Home/>}/> 
-          <Route path="/cities" element={<Cities/>}/>        
+          <Route path="/cities" element={<Cities/>}/>
+          <Route path="/detalles" element={<Detalles/>}/>
+      
           </Routes>
   
       <Foot/>
