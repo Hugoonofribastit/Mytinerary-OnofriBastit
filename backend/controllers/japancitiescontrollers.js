@@ -1,5 +1,4 @@
-module.exports = Router
-const Ciudades = require('../models/ciudades')
+const Ciudades = require("../models/japancities");
 
 
 const ciudadesControladores = {
