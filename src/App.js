@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Nav from '../src/components/nav/nav'; 
 import Cities from '../src/components/cities/cities'
-import Detalles from '../src/components/detalles/detalles'
+import Details from './components/details/details'
 import Home from '../src/components/Home/home'
 import Foot from './components/foot/foot' 
 import ScrollToTop from './components/Scrolltotop/Scrolltotop' 
@@ -24,7 +24,7 @@ const App= ()=> {
           <Routes>
           <Route path="/" element={<Home/>}/> 
           <Route path="/cities" element={<Cities/>}/>
-          <Route path="/detalles" element={<Detalles/>}/>
+          <Route path="/details/:id" element={<Details/>}/>
       
           </Routes>
   

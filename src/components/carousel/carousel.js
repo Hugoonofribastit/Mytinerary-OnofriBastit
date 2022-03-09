@@ -20,28 +20,39 @@ import datos from "../datos"
                       cols: 2,
                       rows: 2,
                       loop: true,
-                      autoplay: 3000,
+                      autoplay: 2500,
                      
                       
                     },
                     {
                       breakpoint: 985,
                       cols: 1,
+                      rows:4,
                       loop: true,
-                      autoplay:3000,
+                      autoplay:2500,
+                      
+                      
+                    },
+
+                    {
+                      breakpoint: 500,
+                      cols: 1,
+                      rows:4,
+                      loop: true,
+                      autoplay:2500,
                       
                       
                     },
                   
                   ]}
-                  mobileBreakpoint={500}
+                  mobileBreakpoint={300} 
                   >
                   {datos.map(evento =>
-                  <Carousel.Item>
+                  <Carousel.Item key={evento.id}>
                     <div className="image" >
-                  <img className="image__img" src={process.env.PUBLIC_URL+ `/imagenes/${evento.image}`} />
-                  <div class="image__overlay image__overlay--primary">
-                    <div class="image__title">{evento.name}</div>
+                  <img className="image__img" src={process.env.PUBLIC_URL+ `/imagenes/${evento.image}`} alt="img" />
+                  <div className="image__overlay image__overlay--primary">
+                    <div className="image__title">{evento.name}</div>
                     
                     </div>
                 </div>
