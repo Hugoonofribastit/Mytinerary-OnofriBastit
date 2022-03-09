@@ -1,49 +1,57 @@
 import * as React from "react";
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import {Link as LinkRouter} from "react-router-dom"
+/* import { useParams } from "react-router-dom";  */
+import {connect} from 'react-redux';
+import citiesActions from '../../Redux/actions/citiesActions';
 
 
-export default function Cities() {
-  const [ciudades, setCiudades] = useState([]); //impresion dinámica
-  const [todasLasCiudades, setTodasLasCiudades] = useState([]); //cambios de lo dinámico a través del search
-  const [busqueda, setBusqueda] = useState(""); //cambios en el search
+function Cities(props) {
 
-  const peticionGet = async () => {
+ /*  const [ciudades, setCiudades] = useState([]); 
+  const [todasLasCiudades, setTodasLasCiudades] = useState([]);  */
+  const [busqueda, setBusqueda] = useState("");   
+  
+  /* const {cities: todasLasCiudades } = props */
+
+/*    const peticionGet = async () => {
     await axios
       .get("http://localhost:4000/api/alljpcities")
-      .then((response) => {
+     .then((response) => {
         setCiudades(response.data.response.ciudades);
         setTodasLasCiudades(response.data.response.ciudades);
-        console.log(response.data.response.ciudades)
-      })
+    
+      }) 
       .catch((error) => {
         console.log(error);
       });
-  };
-
+ };
+ */
+ useEffect(() => {
+  props.fetchearCities()
+}, []);
+/* console.log(props.cities) */
   const searching = (search) => {
     setBusqueda(search.target.value);
-    filtrarBusqueda(search.target.value);
+    props.filterCity(props.cities, search.target.value);
+
+   /*  console.log(search.target.value) */
+
   };
 
-  const filtrarBusqueda = (terminoBusqueda) => {
-    let resultadoBusqueda = todasLasCiudades.filter((elemento) => {
-      if (
-        elemento.name
-          .toString()
-          .toLowerCase()
-          .startsWith(terminoBusqueda.toLowerCase().trim())
-      ) {
-        return elemento;
-      }
-    });
-    setCiudades(resultadoBusqueda);
-  };
+  
 
-  useEffect(() => {
-    peticionGet();
-  }, []);
+
+/* console.log(props) */
+
+/* useEffect(() => {
+  if (busqueda === "") {
+    setCiudades (props.cities)
+  }else{
+    setCiudades(props.filterCities)
+  }
+}, [busqueda]); */
 
   return (
     <>
@@ -53,8 +61,8 @@ export default function Cities() {
       
      
       <div className="title h1 text-center textCarr">Cities from Japan to discover!</div>
-      <div className="inputsearch d-flex align-items-center">
-          <p className="me-5" >Look for your next destination!</p>
+      <div className="d-flex flex-column align-items-center justify-content-center">
+          <h4 className="me-2 mb-3">Look for your next destination!</h4>
           <input
             className="inputsearch"
             placeholder="type your destination"
@@ -63,20 +71,20 @@ export default function Cities() {
           />
         </div>
         <section className="conteinercard">
-        {ciudades.length !== 0 ? (
-          ciudades.map((ciudad) => (
-            <div className="container-fluid py-3 cont ">
+        {props.filterCities?.length !== 0 && props.filterCities!= null ? (
+          props.filterCities?.map((ciudad) => (
+        <div className="container-fluid py-3 cont " key={ciudad._id}>
             <div className="d-flex justify-content-between flex-wrap">
                 <div className="card float ">
                     <div className="row d-flex flex-wrap carta">
                         <div className="col-sm-5">
-                            <img className="imgcard img-fluid mt-3 mb-3" src={process.env.PUBLIC_URL+ `/imagenes/${ciudad.image}`} />
+                            <img className="imgcard img-fluid mt-3 mb-3" src={process.env.PUBLIC_URL+ `/imagenes/${ciudad.image}`} alt="img ciudad" />
                         </div>
                         <div className="col-sm-7">
                             <div className="card-block">
-                                <h3 className="titulocard text-center mt-2">{ciudad.name} </h3>
+                                <h4 className="titulocard text-center mt-2">{ciudad.name} </h4>
                                 <p className="text-just me-3">{ciudad.description}</p>
-                                <LinkRouter to="/detalles" className='link'>
+                                <LinkRouter to={`/details/${ciudad._id}`} className='link'>
                                 <div className="text-center"><button className="btn btn-card btn-primary mb-3 text-center">More Details</button></div>
                                 </LinkRouter>
                                
@@ -99,3 +107,18 @@ export default function Cities() {
 
 
 
+const mapStateToProps = (state) => {
+
+     return{
+         cities: state.Data.cities,
+         filterCities: state.Data.filterCities,
+
+         
+     }
+     }
+const mapDispatchToProps = {
+  fetchearCities: citiesActions.fetchearCities,
+  filterCity : citiesActions.filterCity
+}     
+
+export default connect(mapStateToProps,mapDispatchToProps)(Cities)
