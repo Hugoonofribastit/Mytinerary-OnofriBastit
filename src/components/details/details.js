@@ -24,16 +24,21 @@ const Details = (props) =>{
     }, []);
 
        return(
-    <div >
+    <div className='mb-5'>
         {city._id && ( 
-         <div className="d-flex align-text-center justify-content-center"> 
+         <div className="d-flex flex-column align-items-center justify-content-center"> 
             
-        <h2>{city.name}</h2>
+        <h2 className='mt-5'>{city.name} Itineraries</h2>
         
+        <div className="d-flex row">
+            
         {itineraries.map(itinerary => (
-            <ItineraryItem itinerary={itinerary} key={itinerary._id} />
-      
-        ))}
+            
+                <ItineraryItem itinerary={itinerary} key={itinerary._id} />
+               
+                ))}
+         
+         </div>
 
 
 
