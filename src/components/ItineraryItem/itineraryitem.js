@@ -86,7 +86,7 @@ const ItineraryItem = ({itinerary}) => {
 
               <Typography paragraph>USERNAME:</Typography>
                 <Typography paragraph>
-                {itinerary.username}
+                {itinerary.username} 
                 </Typography>
                 <Typography paragraph>HASHTAG/S:</Typography>
                 <Typography paragraph>
@@ -94,11 +94,11 @@ const ItineraryItem = ({itinerary}) => {
                 </Typography>
                 <Typography paragraph>DURATION:</Typography>
                 <Typography paragraph>
-                <p>{"🕓".repeat(parseInt(itinerary.duration))}</p>
+                {"🕓".repeat(parseInt(itinerary.duration))}
                 </Typography>
                 <Typography paragraph>PRICE:</Typography>
                 <Typography paragraph>
-                <p>{"💸".repeat(parseInt(itinerary.price))}</p>
+                {"💸".repeat(parseInt(itinerary.price))}
                 </Typography>
                 
 
