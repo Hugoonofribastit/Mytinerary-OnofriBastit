@@ -10,10 +10,10 @@ return(
 <img className="logofoot" src={logofoot} alt="img"/>
 
 <div className="text-white">
-    <h2 className="mb-5">Contacto</h2>
+    <h2 className="mb-5">Contact</h2>
     <p>+5491157689978</p>
     <p>0810-555-4698</p>
-    mytinerary@contacto.mh.org    
+    mytinerary@contact.mh.org    
 </div> 
 
 <div className="text-white me-3">

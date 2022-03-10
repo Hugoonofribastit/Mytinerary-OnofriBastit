@@ -21,6 +21,7 @@ const Details = (props) =>{
         
         props.findOneCity(id)
         props.itinerariesPerCity(id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
        
@@ -30,7 +31,7 @@ const Details = (props) =>{
          
          <div className="d-flex flex-column align-items-center justify-content-center"> 
             
-            <h2 className='mt-5'>{city.name} Itineraries</h2>
+            <h2 className='mt-5 title h2 text-center textCarr'>{city.name} Itineraries</h2>
         
         <div className="d-flex row">
         {props.itineraries?.length !== 0 ?  

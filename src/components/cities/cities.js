@@ -30,6 +30,7 @@ function Cities(props) {
  */
  useEffect(() => {
   props.fetchearCities()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 /* console.log(props.cities) */
   const searching = (search) => {
