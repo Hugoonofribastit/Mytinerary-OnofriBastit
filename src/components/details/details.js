@@ -23,20 +23,24 @@ const Details = (props) =>{
         props.itinerariesPerCity(id)
     }, []);
 
-       return(
-    <div className='mb-5'>
-        {city._id && ( 
+       
+    return(
+        
+        <div className='mb-5'>
+         
          <div className="d-flex flex-column align-items-center justify-content-center"> 
             
-        <h2 className='mt-5'>{city.name} Itineraries</h2>
+            <h2 className='mt-5'>{city.name} Itineraries</h2>
         
         <div className="d-flex row">
-            
-        {itineraries.map(itinerary => (
+        {props.itineraries?.length !== 0 ?  
+        ( 
+           itineraries.map(itinerary => (
             
                 <ItineraryItem itinerary={itinerary} key={itinerary._id} />
                
-                ))}
+                ))):
+                (<h3 className='mt-5 title h2 text-center textCarr'>WE COULD NOT FIND ANY ITINERARY FOR THIS CITY</h3>)}
          
          </div>
 
@@ -44,7 +48,7 @@ const Details = (props) =>{
 
         
     </div>
-        )}
+        )
     </div>
     
         )
