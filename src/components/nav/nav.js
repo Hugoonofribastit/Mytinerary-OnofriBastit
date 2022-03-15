@@ -7,10 +7,16 @@ import Button from '@mui/material/Button';
 import {Link as LinkRouter} from "react-router-dom"
 import logo from "../assets/logo.png"
 import userID from "../assets/user.png"
+import { connect } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import userActions from '../../Redux/actions/userActions';
 
 
 
-const NavBar = () => {
+const NavBar = (props) => {
+  function SignOut() {
+		props.SignOutUser(props.user.email)
+	}
  
   return (
     <AppBar position="static" className='navpad'>
@@ -34,13 +40,27 @@ const NavBar = () => {
            
             </div>      
          </div>
+         {props.user ? 
          <div className="navorder">
+         
             <div>
-              <Button color="inherit">SignUp</Button>
-              <Button color="inherit">LogIn</Button>
+              <Button color="inherit">SignOut</Button>
+             
             </div>
             <img className='userlogo' src={userID} alt="logo" /> 
+            
+            
          </div>
+         : <div className="navorder">
+         
+         <div>
+           <Button color="inherit">SignUp</Button>
+           <Button color="inherit">LogIn</Button>
+         </div>
+         <img className='userlogo' src={userID} alt="logo" /> 
+         
+         
+      </div>}
           
           </Box>
 
@@ -50,4 +70,17 @@ const NavBar = () => {
     </AppBar>
   );
 };
-export default NavBar;
+
+const mapStateToProps = (state) => {
+	return {
+		user: state.userReducer.user,
+	}
+}
+const mapDispatchToProps = {
+	SignOutUser: userActions.SignOutUser,
+
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

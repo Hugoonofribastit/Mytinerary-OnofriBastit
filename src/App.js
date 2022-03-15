@@ -7,8 +7,8 @@ import Details from './components/details/details'
 import Home from '../src/components/Home/home'
 import Foot from './components/foot/foot' 
 import ScrollToTop from './components/Scrolltotop/Scrolltotop' 
-
-
+import SignIn from './components/SignUp/signin'
+import SignUp from './components/SignUp/signup'
 
 
 
@@ -25,6 +25,8 @@ const App= ()=> {
           <Route path="/" element={<Home/>}/> 
           <Route path="/cities" element={<Cities/>}/>
           <Route path="/details/:id" element={<Details/>}/>
+          <Route path="/signin" element={<SignIn/>}/>
+          <Route path="/signup" element={<SignUp/>}/> 
       
           </Routes>
   
