@@ -1,8 +1,5 @@
 import React from "react";
-import SignUp from "./signup";
-import SignIn from "./signin";
 import { connect } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import userActions from '../../Redux/actions/userActions';
 
 function Container(props) {
@@ -13,29 +10,19 @@ function Container(props) {
 
 	return (
 		<>
-			{props.user ? <><h1>Usuario conectado {props.user.fullName} desde {props.user.from[0]}</h1>
+			{props.user ? <><h1>User Connected {props.user.fullName} desde {props.user.from[0]}</h1>
 				<div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-					<button onClick={SignOut} className="btn btn-primary btn-block" style={{ maxWidth: 400 }}> SignOut  </button>
+					<button onClick={SignOut} className="btn btn-primary btn-block" style={{ maxWidth: 400 }}> SignOut </button>
 				</div>
 			</>
-				: <h1>No hay usuario conectado</h1>}
-			<div className="card bg-light">
+				: <h1>No user connected</h1>}
+			<div className="card bg-light d-flex flex-column justify-content-center align-items-center mb-5">
 				<article className="card-body mx-auto" style={{ maxWidth: 400 }}>
 					<h4 className="card-title mt-3 text-center">User Account</h4>
 					<p className="text-center">Get started with your free account</p>
 
-					<p className="divider-text">
-						<span className="bg-light">OR</span>
-					</p>
-
-					{/* <BrowserRouter>
-						<Routes>
-							{!props.user &&<Route path="/" element={<SignIn />} />}
-							{!props.user &&<Route path="/signup" element={<SignUp />} />}
-						</Routes>
-					</BrowserRouter> */}
-
-
+					
+						<p className="bg-light text-center">OR</p>
 				</article>
 			</div>
 
@@ -56,3 +43,12 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container)
+
+
+
+		{/* <BrowserRouter>
+						<Routes>
+							{!props.user &&<Route path="/" element={<SignIn />} />}
+							{!props.user &&<Route path="/signup" element={<SignUp />} />}
+						</Routes>
+					</BrowserRouter> */}

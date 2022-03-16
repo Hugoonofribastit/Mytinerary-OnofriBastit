@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import userActions from '../../Redux/actions/userActions';
 import {Link as LinkRouter } from 'react-router-dom';
 import paises from "../../components/paises"
+import Snack from '../../components/snackbar';
 
  function SignUp(props) {
 console.log(props)
@@ -22,6 +23,7 @@ console.log(event.target)
    
     return (
 <div className='d-flex flex-column justify-content-center align-items-center' >
+    <Snack/>
         <h1 className='mb-5 mt-5'>Create a new User</h1>
 
         <form onSubmit={handleSubmit}>
@@ -43,7 +45,7 @@ console.log(event.target)
                 </div>
                 <input name="email" className="form-control mb-3" placeholder="Email address" type="email" />
             </div>
-            <label>Select Your country</label>
+        
             
             
             <div className="form-group input-group">
@@ -52,6 +54,7 @@ console.log(event.target)
                 </div>
                 <input name='password' className="form-control mb-3" placeholder="password" type="password" />
             </div>
+            <label>Select Your country</label>
             <select className="form-select mb-3" aria-label="Default select example">
                
                 {paises.map(pais =>

@@ -8,7 +8,7 @@ import {Link as LinkRouter} from "react-router-dom"
 import logo from "../assets/logo.png"
 import userID from "../assets/user.png"
 import { connect } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+/* import { BrowserRouter, Routes, Route } from 'react-router-dom'; */
 import userActions from '../../Redux/actions/userActions';
 
 
@@ -44,7 +44,7 @@ const NavBar = (props) => {
          <div className="navorder">
          
             <div>
-              <Button color="inherit">SignOut</Button>
+              <Button onClick={SignOut} color="inherit">SignOut</Button>
              
             </div>
             <img className='userlogo' src={userID} alt="logo" /> 
@@ -54,8 +54,12 @@ const NavBar = (props) => {
          : <div className="navorder">
          
          <div>
+         <LinkRouter to="/signup" className='link'>
            <Button color="inherit">SignUp</Button>
-           <Button color="inherit">LogIn</Button>
+           </LinkRouter>
+           <LinkRouter to="/signin" className='link'>
+           <Button color="inherit">SignIn</Button>
+           </LinkRouter>
          </div>
          <img className='userlogo' src={userID} alt="logo" /> 
          

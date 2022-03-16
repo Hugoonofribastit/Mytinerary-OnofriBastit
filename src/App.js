@@ -19,6 +19,7 @@ const App= ()=> {
     
     <BrowserRouter>
     <ScrollToTop/>
+    
       <Nav/>
    
           <Routes>

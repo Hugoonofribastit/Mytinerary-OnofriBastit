@@ -15,11 +15,12 @@ const userActions = {
         }
     },
     signInUser: (loggedUser) => {
-
+        console.log(loggedUser)
         return async (dispatch, getState) => {
             const user = await axios.post('http://localhost:4000/api/auth/signIn', { loggedUser })
+            /* console.log(user) */
             if(user.data.success){
-             console.log(user.data)   
+             /* console.log(user.data.success)  */  
             dispatch({type: 'user', payload: user.data.response.userData});
             
             }
@@ -31,6 +32,7 @@ const userActions = {
     },
     SignOutUser :(closeuser)=>{
         return async (dispatch, getState) => {
+            /* console.log("signout") */
         const user = axios.post('http://localhost:4000/api/auth/signOut',{closeuser})
         dispatch({type: 'user', payload: null});
     } 

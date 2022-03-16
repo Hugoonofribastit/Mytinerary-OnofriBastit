@@ -18,7 +18,7 @@ console.log(req.body)
                 /*     console.log("resultado de if " +(usuarioExiste.from.indexOf(from) === 0 )) */ //INDEXOF = 0 EL VALOR EXISTE EN EL INDICE EQ A TRUE -1 NO EXITE EQ A FALSE
                     res.json({ success: false,
                                from:"form-Signup", 
-                               message: "Ya has realizado tu SignUp de esta forma por favor realiza SignIn" })
+                               message: "You've already signedUp, please signIn" })
                 } else {
                     const contraseñaHasheada = bcryptjs.hashSync(password, 10)
                     usuarioExiste.from.push(from)
@@ -30,7 +30,7 @@ console.log(req.body)
                     res.json({
                         success: true, 
                         from:"signup", 
-                        message: "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp y agregarlo a tus metodos de SignIN "
+                        message: "We've already sent you an email, please check your mailbox "
                     }) 
                     
                     }else{
@@ -63,7 +63,7 @@ console.log(req.body)
                     res.json({
                         success: true, 
                         from:"signup",
-                        message: "Felicitaciones se ha creado tu usuario con " +from
+                        message: "User has been created from: " +from
                     }) // AGREGAMOS MENSAJE DE VERIFICACION
     
                 } else {
@@ -73,14 +73,14 @@ console.log(req.body)
     
                     res.json({
                         success: true, 
-                        from:"siggup",
-                        message: "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp "
+                        from:"signup",
+                        message: "We've already sent you an email, please check your mailbox "
                     }) // AGREGAMOS MENSAJE DE VERIFICACION
                 }
             }
         } catch (error) {
             console.log(error)
-            res.json({ success: false, message: "Algo a salido mal intentalo en unos minutos" }) //CAPTURA EL ERROR
+            res.json({ success: false, message: "Something went wrong, please try again later" }) //CAPTURA EL ERROR
         }
     },
     signInUser: async (req, res) => {
@@ -91,7 +91,7 @@ console.log(req.body)
             const usuarioExiste = await User.findOne({ email })
 
             if (!usuarioExiste) {// PRIMERO VERIFICA QUE EL USUARIO EXISTA
-                res.json({ success: false, message: "Tu usuarios no ha sido registrado realiza signUp" })
+                res.json({ success: false, message: "Wrong username, please check your signUp user id or email" })
 
             } else {
                 if (from !== "form-Signin") { 
@@ -111,13 +111,13 @@ console.log(req.body)
                         res.json({ success: true, 
                                    from:from,
                                    response: {userData }, 
-                                   message:"Welcome again "+userData.name,
+                                   message:"Welcome again "+ userData.name,
                                  })
 
                     } else {
                         res.json({ success: false, 
                             from: from, 
-                            message:"No has realizado el registro con "+from+"si quieres ingresar con este metodo debes hacer el signUp con " +from
+                            message:"You have not done the signUp "+from+"si quieres ingresar con este metodo debes hacer el signUp with " +from
                           })
                     }
                 } else { 
@@ -136,18 +136,18 @@ console.log(req.body)
                         res.json({ success: true, 
                             from: from, 
                             response: {userData }, 
-                            message:"Bienvenido nuevamente "+userData.name,
+                            message:"Welcome! ",
                           })
                         }else{
                             res.json({ success: false, 
                                 from: from,  
-                                message:"El usuario o el password no coinciden",
+                                message:"User and PW do not match",
                               })
                         }
                     }else{
                         res.json({ success: false, 
                             from: from, 
-                            message:"No has verificado tu email, por favor verifica ti casilla de emails para completar tu signUp"
+                            message:"You have not verified your email"
                           }) 
                     }
 
@@ -156,7 +156,7 @@ console.log(req.body)
 
         } catch (error) {
             console.log(error);
-            res.json({ success: false, message: "Algo a salido mal intentalo en unos minutos" })
+            res.json({ success: false, message: "Something went wrong, please try again later" })
         }
     },
     signOutUser: async (req, res) => {
@@ -164,7 +164,7 @@ console.log(req.body)
         const email = req.body.closeuser
         const user = await User.findOne({ email })
         await user.save()
-        res.json(console.log('sesion cerrada ' + email))
+        res.json(console.log('signed ' + email))
     },
 
 }
