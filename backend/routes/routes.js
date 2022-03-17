@@ -1,5 +1,6 @@
 const Router = require(`express`).Router();
 const validator = require('../config/validator')
+const passport = require('../config/passport')
 
 const ciudadesControllers = require(`../controllers/japancitiescontrollers`);
 
@@ -21,12 +22,18 @@ Router.route(`/alljpcities/:id`)
 module.exports = Router;
 
 const usersControllers = require("../controllers/userControllers");
-const { signUpUsers, signInUser, signOutUser } = usersControllers;
+const { signUpUsers, signInUser, signOutUser, verifyEmail, verificarToken } = usersControllers;
 
 Router.route("/auth/signUp").post(validator,signUpUsers);
 
 Router.route("/auth/signIn").post(signInUser);
 
 Router.route("/auth/signOut").post(signOutUser);
+
+Router.route('/verify/:uniqueString').get(verifyEmail) //RECIBE EL LINK DE USUARIO
+ //LLAMA A FUNCION DE VERIFICACIION
+
+ Router.route('/auth/signInToken')
+.get(passport.authenticate('jwt',{ session:false }), verificarToken)
 
 module.exports = Router;

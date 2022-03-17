@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Nav from '../src/components/nav/nav'; 
@@ -9,11 +10,22 @@ import Foot from './components/foot/foot'
 import ScrollToTop from './components/Scrolltotop/Scrolltotop' 
 import SignIn from './components/SignUp/signin'
 import SignUp from './components/SignUp/signup'
+import { connect } from 'react-redux';
+import userActions from './Redux/actions/userActions';
 
 
 
-const App= ()=> {
+const App= (props)=> {
  
+  useEffect(() => {
+ 
+    if(localStorage.getItem('token')!== null){
+      const token = localStorage.getItem("token")
+      props.VerificarToken(token)
+    }
+  },[])
+
+
   
   return (
     
@@ -40,4 +52,11 @@ const App= ()=> {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+	VerificarToken: userActions.VerificarToken,
+
+}
+
+
+
+export default connect(null, mapDispatchToProps)(App);
