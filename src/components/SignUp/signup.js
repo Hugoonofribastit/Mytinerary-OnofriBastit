@@ -4,6 +4,7 @@ import userActions from '../../Redux/actions/userActions';
 import {Link as LinkRouter } from 'react-router-dom';
 import paises from "../../components/paises"
 import Snack from '../../components/snackbar';
+import FacebookSignUp from "./facebooksignup"
 
  function SignUp(props) {
 console.log(props)
@@ -22,10 +23,15 @@ console.log(event.target)
     }
    
     return (
+
+       
 <div className='d-flex flex-column justify-content-center align-items-center' >
+
     <Snack/>
         <h1 className='mb-5 mt-5'>Create a new User</h1>
-
+        <h2 className='mb-5'>Using Facebook</h2>
+        <FacebookSignUp/>
+        <h2>Or with our Form</h2>
         <form onSubmit={handleSubmit}>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
@@ -62,7 +68,7 @@ console.log(event.target)
                 )}
             </select>
 
-            <div className="form-group">
+            <div className="form-group d-flex justify-content-center align-items-center">
                 <button type="submit" className="btn btn-primary btn-block mt-3"> Create Account  </button>
             </div>
             <div className="text-center mt-3">Do you have an existing account? <LinkRouter to="/signin">SignIn</LinkRouter> </div>

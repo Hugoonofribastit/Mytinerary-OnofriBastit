@@ -10,19 +10,18 @@ function Container(props) {
 
 	return (
 		<>
-			{props.user ? <><h1>User Connected {props.user.fullName} desde {props.user.from[0]}</h1>
+			{props.user ? <><h1>User Connected {props.user.fullName} from {props.user.from[0]}</h1>
 				<div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
 					<button onClick={SignOut} className="btn btn-primary btn-block" style={{ maxWidth: 400 }}> SignOut </button>
 				</div>
 			</>
 				: <h1>No user connected</h1>}
-			<div className="card bg-light d-flex flex-column justify-content-center align-items-center mb-5">
+			<div className="d-flex flex-column justify-content-center align-items-center mb-5">
 				<article className="card-body mx-auto" style={{ maxWidth: 400 }}>
-					<h4 className="card-title mt-3 text-center">User Account</h4>
-					<p className="text-center">Get started with your free account</p>
-
 					
-						<p className="bg-light text-center">OR</p>
+					<p className="text-center">Get started with your free account</p>
+						<p className="bg-light text-center">Or</p>
+						<p className="bg-light text-center">SignIn here!</p>
 				</article>
 			</div>
 

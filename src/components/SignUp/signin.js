@@ -5,7 +5,7 @@ import userActions from '../../Redux/actions/userActions';
 import { Link as LinkRouter } from 'react-router-dom';
 import Container from './container';
 import Snack from '../../components/snackbar';
-
+import FacebookSignIn from "./facebooksignin"
 
 function SignIn(props) {
 console.log(props)
@@ -21,8 +21,11 @@ console.log(props)
 
 	return (
 <div className='d-flex flex-column justify-content-center align-items-center' >
-<Snack/>
-<Container/>
+		
+		<Snack/>
+		<Container/>
+		<FacebookSignIn/>
+		<h4 className='mb-3'>Or SignIn using our form</h4>
 		<form onSubmit={handleSubmit}>
 			<div className="form-group input-group">
 				<div className="input-group-prepend">
@@ -37,8 +40,8 @@ console.log(props)
 				<input name='password' className="form-control" placeholder="Create password" type="password" />
 			</div>
 
-			<div className="form-group">
-				<button type="submit" className="btn btn-primary btn-block mt-5 mb-3"> SignIn  </button>
+			<div className="form-group d-flex justify-content-center align-items-center">
+				<button type="submit" className="btn btn-primary btn-block mt-5 mb-3 text-center"> SignIn  </button>
 			</div>
 			<div className="text-center">Dont you have an account? Please <LinkRouter to="/signup">SignUp</LinkRouter> </div>
 		</form>
