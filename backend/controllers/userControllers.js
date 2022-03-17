@@ -13,13 +13,13 @@ const sendEmail = async (email, uniqueString) => { //FUNCION ENCARGADA DE ENVIAR
         port: 465,
         secure: true,
         auth: {
-            user: "useremailverifyMindHub@gmail.com",    //DEFINIMOS LOS DATOS DE AUTORIZACION DE NUESTRO PROVEEDOR DE
-            pass: "mindhub2021"                          //COREO ELECTRONICO, CONFIGURAR CUAENTAS PARA PERMIR EL USO DE APPS
+            user: "hugomindhub182@gmail.com",    //DEFINIMOS LOS DATOS DE AUTORIZACION DE NUESTRO PROVEEDOR DE
+            pass: "hugo1234$"                          //COREO ELECTRONICO, CONFIGURAR CUAENTAS PARA PERMIR EL USO DE APPS
         }                                               //CONFIGURACIONES DE GMAIL
     })
 
     // EN ESTA SECCION LOS PARAMETROS DEL MAIL 
-    let sender = "useremailverifyMindHub@gmail.com"  
+    let sender = "hugomindhub182@gmail.com"  
     let mailOptions = { 
         from: sender,    //DE QUIEN
         to: email,       //A QUIEN
