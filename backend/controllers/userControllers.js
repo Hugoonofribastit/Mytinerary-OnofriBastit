@@ -63,7 +63,7 @@ const usersControllers = {
 
     signUpUsers:async (req,res)=>{
         console.log(req.body)
-        let {name, surname, email, password, from } = req.body.userData
+        let {name, surname, email, password,picture,country, from } = req.body.userData
       const test = req.body.test
 
         try {
@@ -113,8 +113,10 @@ const usersControllers = {
                     surname,
                     email,
                     password:[contraseñaHasheada],
+                    picture,
                     uniqueString:crypto.randomBytes(15).toString('hex'),
                     emailVerificado:false,
+                    country,
                     from:[from],
                 
                 })
@@ -167,6 +169,8 @@ const usersControllers = {
                                         name: usuarioExiste.name,
                                         surname: usuarioExiste.surname,
                                         email: usuarioExiste.email,
+                                        picture: usuarioExiste.picture,
+                                        country:usuarioExiste.country,
                                         from:usuarioExiste.from
                                         }
                         await usuarioExiste.save()
@@ -199,6 +203,8 @@ const usersControllers = {
                             name: usuarioExiste.name, 
                             surname: usuarioExiste.surname,
                             email: usuarioExiste.email,
+                            picture: usuarioExiste.picture,
+                            country:usuarioExiste.country,
                             from:usuarioExiste.from
                             }
                             const token = jwt.sign(userData, process.env.SECRET_KEY, {expiresIn:  60* 60*24 })
@@ -240,7 +246,7 @@ const usersControllers = {
         console.log(req.user)
         if(!req.err){
         res.json({success:true,
-                  response:{id:req.user.id, name:req.user.name, surname:req.user.surname,email:req.user.email, from:"token"},
+                  response:{id:req.user.id, name:req.user.name, surname:req.user.surname,email:req.user.email, picture:req.user.picture, country:req.user.country, from:"token"},
                   message:"Welcome back "+req.user.name}) 
         }else{
             res.json({success:false,

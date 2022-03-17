@@ -8,6 +8,8 @@ const userSchema =  new mongoose.Schema({
     password:[{type:String, required:true}],
     uniqueString:{type:String, required:true},
     emailVerificado:{type:Boolean, required:true}, 
+    picture:{type:String,required:true},
+    country:{type:String,required:true},
 
     from:{type:Array}
     

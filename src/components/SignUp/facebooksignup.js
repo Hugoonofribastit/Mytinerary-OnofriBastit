@@ -6,8 +6,9 @@ import './styleSign.css'
 
 
 function FacebookSignUp(props) {
-
-  const responseFacebook = async (res) => {
+  
+    console.log(props)
+    const responseFacebook = async (res) => {
     console.log(res)
     console.log(res.name)
       const fullNameSeparado = res.name.split(" ")
@@ -20,11 +21,14 @@ function FacebookSignUp(props) {
 
     const userData = {
       name:fullNameSeparado[0],
-      surname:fullNameSeparado[1] + "" + fullNameSeparado[2],
+      surname:fullNameSeparado[1] + " " + fullNameSeparado[2],
       email: res.email,
       password: res.id,
+      picture:res.picture.data.url,
+      country: props.country,
       from: "facebook",
-      pais:props.pais
+      
+      
     }
     await props.signUpUser(userData)
   }

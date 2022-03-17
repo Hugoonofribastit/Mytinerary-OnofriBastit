@@ -2,21 +2,47 @@ import React from 'react'
 import { connect } from 'react-redux';
 import userActions from '../../Redux/actions/userActions';
 import {Link as LinkRouter } from 'react-router-dom';
-import paises from "../../components/paises"
 import Snack from '../../components/snackbar';
 import FacebookSignUp from "./facebooksignup"
+import {useState } from "react";
+
 
  function SignUp(props) {
-console.log(props)
+    const paises = [
+        "unselected",
+        "Argentina",
+        "Japan",
+        "Colombia",
+        "Chile",
+        "South Korea",
+        "Venezuela",
+        "Spain",
+        "Perú",
+        "United States",
+      ];
+    
+      const [selectPaises, setSelectPaises] = useState("unselected");
+    
+      function select(event) {
+        console.log(event.target.value);
+        setSelectPaises(event.target.value);
+      }
+
+        console.log(props)
+        
     const handleSubmit = (event) => {
-        event.preventDefault()
-console.log(event.target)
+        event.preventDefault()   
+        console.log(event.target.value)
         const userData={
             name:event.target[0].value,
             surname:event.target[1].value,
             email:event.target[2].value,
             password:event.target[3].value,
-            from:"form-Signup"
+            picture:event.target[4].value,
+            country: selectPaises,
+
+            from:"form-Signup",
+            
         }
         props.signUpUser(userData)
         
@@ -24,13 +50,31 @@ console.log(event.target)
    
     return (
 
-       
+      <>
 <div className='d-flex flex-column justify-content-center align-items-center' >
+    <div>
+          <h2 className="mt-3 text-center">
+            Select your country
+          </h2>
+        </div>
+        <div>
+          <select
+            className="form-select form-select-sm"
+            aria-label=".form-select-sm example"
+            onChange={select}
+          >
+            {paises.map((country) => (
+              <option key={country}>{country}</option>
+            ))}
+          </select>
+          </div>
+          {selectPaises !== "unselected" ? (
+        <section>       
 
-    <Snack/>
+        <Snack/>
         <h1 className='mb-5 mt-5'>Create a new User</h1>
         <h2 className='mb-5'>Using Facebook</h2>
-        <FacebookSignUp/>
+        <FacebookSignUp country={selectPaises}/>
         <h2>Or with our Form</h2>
         <form onSubmit={handleSubmit}>
             <div className="form-group input-group">
@@ -60,11 +104,17 @@ console.log(event.target)
                 </div>
                 <input name='password' className="form-control mb-3" placeholder="password" type="password" />
             </div>
+            <div className="form-group input-group">
+                <div className="input-group-prepend">
+                    
+                </div>
+                   <input name="picture" className="form-control mb-3" placeholder="type any letter" type="text" />
+                </div>
             <label>Select Your country</label>
             <select className="form-select mb-3" aria-label="Default select example">
                
                 {paises.map(pais =>
-                <option key={pais.name} value={pais.value}>{pais.name}</option>
+                <option key={pais.name} value={pais.name}>{pais.name}</option>
                 )}
             </select>
 
@@ -73,7 +123,12 @@ console.log(event.target)
             </div>
             <div className="text-center mt-3">Do you have an existing account? <LinkRouter to="/signin">SignIn</LinkRouter> </div>
         </form>
+        </section>    
+        ) : (
+            <h3>Select your country to proceed with the SignUp</h3>
+          )}
         </div>
+        </> 
     )
 
 }

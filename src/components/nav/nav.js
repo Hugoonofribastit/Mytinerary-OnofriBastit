@@ -14,7 +14,9 @@ import userActions from '../../Redux/actions/userActions';
 
 
 const NavBar = (props) => {
+  console.log(props.user)
   function SignOut() {
+
 		props.SignOutUser(props.user.email)
 	}
  
@@ -41,13 +43,19 @@ const NavBar = (props) => {
             </div>      
          </div>
          {props.user ? 
-         <div className="navorder">
+         <div className="navorder me-3">
          
             <div>
-              <Button onClick={SignOut} color="inherit">SignOut</Button>
+              <Button onClick={SignOut} color="inherit">SignOut </Button>
              
             </div>
-            <img className='userlogo' src={userID} alt="logo" /> 
+
+
+            {/* <img className='userlogo' src={props.user.picture} alt={"Logged as " + props.user.name + props.user.surname} /> */}
+            {props.user ?
+            <div>Logged as {props.user.name}</div>
+            :
+            <img className='userlogo' src={userID} alt="logo" /> }
             
             
          </div>
