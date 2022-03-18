@@ -284,3 +284,8 @@ margin-top: auto;
 .vh{
   min-height: 80vh;
 }
+
+.imageNav{
+  border-radius: 360px;
+  margin-left: 2rem;
+}

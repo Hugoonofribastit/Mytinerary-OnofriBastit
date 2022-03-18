@@ -81,7 +81,7 @@ import {useState } from "react";
                 <div className="input-group-prepend">
                     
                 </div>
-                <input name="Name" className="form-control mb-3" placeholder="Name" type="text" />
+                <input name="Name" className="form-control mb-3" placeholder="Name" type="text" required />
             </div>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
@@ -93,7 +93,7 @@ import {useState } from "react";
                 <div className="input-group-prepend">
                    
                 </div>
-                <input name="email" className="form-control mb-3" placeholder="Email address" type="email" />
+                <input name="email" className="form-control mb-3" placeholder="Email address" type="email" required />
             </div>
         
             
@@ -108,16 +108,9 @@ import {useState } from "react";
                 <div className="input-group-prepend">
                     
                 </div>
-                   <input name="picture" className="form-control mb-3" placeholder="type any letter" type="text" />
+                   <input name="picture" className="form-control mb-3" placeholder="img url" type="text" />
                 </div>
-            <label>Select Your country</label>
-            <select className="form-select mb-3" aria-label="Default select example">
-               
-                {paises.map(pais =>
-                <option key={pais.name} value={pais.name}>{pais.name}</option>
-                )}
-            </select>
-
+         
             <div className="form-group d-flex justify-content-center align-items-center">
                 <button type="submit" className="btn btn-primary btn-block mt-3"> Create Account  </button>
             </div>

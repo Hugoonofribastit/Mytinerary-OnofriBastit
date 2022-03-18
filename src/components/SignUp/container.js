@@ -10,7 +10,7 @@ function Container(props) {
 
 	return (
 		<>
-			{props.user ? <><h1>User Connected {props.user.fullName} from {props.user.from[0]}</h1>
+			{props.user ? <><h1>User Connected {props.user.name} {props.user.surname}  from {props.user.from[0]}</h1>
 				<div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
 					<button onClick={SignOut} className="btn btn-primary btn-block" style={{ maxWidth: 400 }}> SignOut </button>
 				</div>

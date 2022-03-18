@@ -50,10 +50,10 @@ const NavBar = (props) => {
              
             </div>
 
-
+          {/*   <div>Logged as {props.user.name}</div> */}
             {/* <img className='userlogo' src={props.user.picture} alt={"Logged as " + props.user.name + props.user.surname} /> */}
             {props.user ?
-            <div>Logged as {props.user.name}</div>
+            <img className='imageNav' src={props.user.picture} alt={"Logged as " + props.user.name + props.user.surname} />
             :
             <img className='userlogo' src={userID} alt="logo" /> }
             
