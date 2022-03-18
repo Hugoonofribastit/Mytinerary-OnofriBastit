@@ -45,9 +45,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Container)
 
 
 
-		{/* <BrowserRouter>
-						<Routes>
-							{!props.user &&<Route path="/" element={<SignIn />} />}
-							{!props.user &&<Route path="/signup" element={<SignUp />} />}
-						</Routes>
-					</BrowserRouter> */}
+	

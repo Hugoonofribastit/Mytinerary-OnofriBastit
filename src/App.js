@@ -16,13 +16,15 @@ import userActions from './Redux/actions/userActions';
 
 
 const App= (props)=> {
- 
+ console.log(props.user)
   useEffect(() => {
  
     if(localStorage.getItem('token')!== null){
       const token = localStorage.getItem("token")
       props.VerificarToken(token)
+     
     }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
@@ -35,12 +37,24 @@ const App= (props)=> {
       <Nav/>
    
           <Routes>
-          <Route path="/" element={<Home/>}/> 
-          <Route path="/cities" element={<Cities/>}/>
-          <Route path="/details/:id" element={<Details/>}/>
-          <Route path="/signin" element={<SignIn/>}/>
-          <Route path="/signup" element={<SignUp/>}/> 
-      
+            {props.user ? (
+              <>
+              <Route path="/" element={<Home/>}/> 
+              <Route path="*" element={<Home/>}/> 
+              <Route path="/cities" element={<Cities/>}/>
+              <Route path="/details/:id" element={<Details/>}/>
+         
+          </>
+            ):(
+              <>
+                <Route path="/" element={<Home/>}/> 
+                <Route path="*" element={<Home/>}/> 
+                <Route path="/cities" element={<Cities/>}/>
+                <Route path="/details/:id" element={<Details/>}/>
+                <Route path="/signin" element={<SignIn/>}/>
+                <Route path="/signup" element={<SignUp/>}/> 
+              </>
+            )}
           </Routes>
   
       <Foot/>
@@ -52,11 +66,23 @@ const App= (props)=> {
   );
 }
 
-const mapDispatchToProps = {
+
+
+/* const mapDispatchToProps = {
 	VerificarToken: userActions.VerificarToken,
 
 }
 
 
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App); */
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user,
+  };
+};
+const mapDispatchToProps = {
+  VerificarToken: userActions.VerificarToken,
+  SignOutUser: userActions.SignOutUser,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

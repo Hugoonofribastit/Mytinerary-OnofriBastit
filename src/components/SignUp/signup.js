@@ -28,7 +28,7 @@ import {useState } from "react";
         setSelectPaises(event.target.value);
       }
 
-        console.log(props)
+       
         
     const handleSubmit = (event) => {
         event.preventDefault()   

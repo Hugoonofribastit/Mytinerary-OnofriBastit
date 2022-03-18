@@ -14,7 +14,7 @@ import userActions from '../../Redux/actions/userActions';
 
 
 const NavBar = (props) => {
-  console.log(props.user)
+  
   function SignOut() {
 
 		props.SignOutUser(props.user.email)
