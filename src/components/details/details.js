@@ -33,7 +33,7 @@ const Details = (props) =>{
             
             <h2 className='mt-5 title h2 text-center textCarr'>{city.name} Itineraries</h2>
         
-        <div className="d-flex row">
+        <div className="d-flex flex-column">
         {props.itineraries?.length !== 0 ?  
         ( 
            itineraries.map(itinerary => (

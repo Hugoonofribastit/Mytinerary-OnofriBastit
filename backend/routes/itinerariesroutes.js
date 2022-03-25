@@ -9,7 +9,10 @@ const {
           deleteItinerary,
           modifyItinerary,
           getCityItineraries,
+          
 } = itinerariesControllers;
+
+
 
 itinerariesRouter
           .route(`/itineraries`)

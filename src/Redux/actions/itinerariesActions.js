@@ -12,7 +12,6 @@ itinerariesPerCity: (id) => {
     
     }
 },
- 
 
 }
 

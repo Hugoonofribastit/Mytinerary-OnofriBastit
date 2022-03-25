@@ -36,8 +36,8 @@ const ItineraryItem = ({itinerary}) => {
   };
 
         return (
-          
-          <Card sx={{ maxWidth: 345 }} style={{marginRight:50}}>
+          <div className="mb-5">
+          <Card sx={{ maxWidth: 920 }} style={{marginRight:50}}>
             <CardHeader 
             /*   avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -55,6 +55,7 @@ const ItineraryItem = ({itinerary}) => {
             <CardMedia
               component="img"
               height="194"
+              
               image={process.env.PUBLIC_URL+ `/imagenes/${itinerary.image}`}
               alt="imagen itinerario"
             />
@@ -62,14 +63,42 @@ const ItineraryItem = ({itinerary}) => {
               <Typography variant="body2" color="text.secondary">
               {itinerary.details}
               </Typography>
+
+              <div className="d-flex mt-3">
+
+
+                <div className='me-3'>
+                <Typography paragraph>USERNAME:
+                {itinerary.username} 
+                </Typography>
+                </div>
+                 <div className='me-3'>
+                <Typography paragraph>
+                HASHTAG/S: <a href="#">{itinerary.hashtag}</a>
+                </Typography>
+                </div>
+                <div className='me-3'>
+                <Typography paragraph> DURATION:
+                {"🕓".repeat(parseInt(itinerary.duration))}
+                </Typography>
+                </div>
+               <div>
+                <Typography paragraph>PRICE: 
+                {"💸".repeat(parseInt(itinerary.price))}
+                </Typography>
+                </div>
+
+</div>
             </CardContent>
             <CardActions disableSpacing>
+
+
+
+              
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
-              <IconButton >
-                <ShareIcon />
-              </IconButton>
+              
               <ExpandMore
                 expand={expanded}
                 onClick={handleExpandClick}
@@ -81,24 +110,24 @@ const ItineraryItem = ({itinerary}) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-
-              <Typography paragraph>USERNAME:</Typography>
-                <Typography paragraph>
+<p>under construction</p>
+              
+               {/*  <Typography paragraph>USERNAME:
                 {itinerary.username} 
                 </Typography>
-                <Typography paragraph>HASHTAG/S:</Typography>
+               
                 <Typography paragraph>
-                {itinerary.hashtag}
-                </Typography>
-                <Typography paragraph>DURATION:</Typography>
-                <Typography paragraph>
-                {"🕓".repeat(parseInt(itinerary.duration))}
-                </Typography>
-                <Typography paragraph>PRICE:</Typography>
-                <Typography paragraph>
-                {"💸".repeat(parseInt(itinerary.price))}
+                HASHTAG/S: {itinerary.hashtag}
                 </Typography>
                 
+                <Typography paragraph> DURATION:
+                {"🕓".repeat(parseInt(itinerary.duration))}
+                </Typography>
+               
+                <Typography paragraph>PRICE: 
+                {"💸".repeat(parseInt(itinerary.price))}
+                </Typography>
+                 */}
 
                 
                 
@@ -106,6 +135,7 @@ const ItineraryItem = ({itinerary}) => {
               </CardContent>
             </Collapse>
           </Card>
+          </div>
           
         );
 

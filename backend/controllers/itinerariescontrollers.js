@@ -69,5 +69,7 @@ const itineraryController = {
                               itinerary
                     ).then((respuesta) => res.json({ respuesta }));
           },
+
+
 };
 module.exports = itineraryController;

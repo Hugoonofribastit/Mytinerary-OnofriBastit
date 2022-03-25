@@ -286,6 +286,8 @@ margin-top: auto;
 }
 
 .imageNav{
+  max-height: 4.5rem;
+  width: auto;
   border-radius: 360px;
   margin-left: 2rem;
 }

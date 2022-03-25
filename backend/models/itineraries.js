@@ -9,7 +9,9 @@ const itinerariesSchema = new mongoose.Schema({
     price: { type: String, required: true },
     duration: { type: String, required: true },
     hashtag: [{ type: String, required: true }],
-    cityId: {type: mongoose.Schema.Types.ObjectId, ref: 'japancities'} 
+    cityId: {type: mongoose.Schema.Types.ObjectId, ref: 'japancities'}, 
+    likes: {type: Array},
+      
   });
   const itineraries = mongoose.model("itinerarios", itinerariesSchema);
   module.exports = itineraries;
