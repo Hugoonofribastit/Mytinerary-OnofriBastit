@@ -26,7 +26,7 @@ const activityController = {
           getOneActivity: async (req, res) => {
                     const id = req.params.id;
                     const data = await Activity.findOne({ _id: id }).populate(
-                              "cityId"
+                              "itineraryId"
                     );
                     res.json({ response: data });
           },

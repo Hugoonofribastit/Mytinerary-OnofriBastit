@@ -10,8 +10,10 @@ const userSchema =  new mongoose.Schema({
     emailVerificado:{type:Boolean, required:true}, 
     picture:{type:String,required:true},
     country:{type:String,required:true},
-
-    from:{type:Array}
+    from:{type:Array},
+    autor: {type:mongoose.Types.ObjectId, ref:"users"},
+   
+  
     
 })
 

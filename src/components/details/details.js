@@ -5,17 +5,17 @@ import { useEffect } from 'react'
 import { connect } from "react-redux";
 import citiesActions from "../../Redux/actions/citiesActions";
 import itinerariesActions from '../../Redux/actions/itinerariesActions';
-import ItineraryItem from '../ItineraryItem/itineraryitem';
+import ItineraryItem from '../../components/itineraryItem/itineraryItem';
 
 
 
 const Details = (props) =>{
     const { 
         city,
-        itineraries
     } = props;
  
     const {id} = useParams()
+    
   
     useEffect(() => {
         
@@ -29,30 +29,32 @@ const Details = (props) =>{
         
         <div className='mb-5'>
          
-         <div className="d-flex flex-column align-items-center justify-content-center"> 
+            <div className="d-flex flex-column align-items-center justify-content-center"> 
             
-            <h2 className='mt-5 title h2 text-center textCarr'>{city.name} Itineraries</h2>
-        
-        <div className="d-flex flex-column">
-        {props.itineraries?.length !== 0 ?  
+                <h2 className='mt-5 title h2 text-center textCarr'>{city.name} Itineraries</h2>
+            
+
+                {props.itineraries?.length !== 0 ?  
         ( 
-           itineraries.map(itinerary => (
-            
-                <ItineraryItem itinerary={itinerary} key={itinerary._id} />
-               
-                ))):
-                (<h3 className='mt-5 title h2 text-center textCarr'>WE COULD NOT FIND ANY ITINERARY FOR THIS CITY</h3>)}
-         
-         </div>
-
-
+           props.itineraries.map((itinerary) => (
+                <div className="d-flex flex-column" key={itinerary._id}>
+                    <ItineraryItem itinerary={itinerary} id={itinerary._id} />    
+                 </div>
+                  ))):
+                  (<h3 className='mt-5 title h2 text-center textCarr'>WE COULD NOT FIND ANY ITINERARY FOR THIS CITY</h3>)}
+          
+          
+        
+          </div>
+        ))
+ 
 
         
-    </div>
-        )
-    </div>
+            </div>
+        
+        
     
-        )
+    )
        
     }
     const mapStateToProps = (state) => {
@@ -70,4 +72,3 @@ const Details = (props) =>{
       };
       export default connect(mapStateToProps, mapDispatchToProps)(Details);
      /* export default Details; */
-

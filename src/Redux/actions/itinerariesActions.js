@@ -13,6 +13,35 @@ itinerariesPerCity: (id) => {
     }
 },
 
+
+getOneItinerary: (id) => {
+    return async (dispatch, getState) => {
+        
+        const res = await axios.get('http://localhost:4000/api/itineraries/'+id)
+       return res
+    }
+},
+
+likeDislike: (id) => {
+
+    const token = localStorage.getItem('token')
+        console.log(token)
+    return () => {
+        try {
+            
+            let response = axios.put(`http://localhost:4000/api/like/${id}`, {},
+            {headers: {
+                Authorization: "Bearer "+token
+                                }
+            })
+            return response
+            
+        }catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 }
 
 export default itinerariesActions

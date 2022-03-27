@@ -11,17 +11,17 @@ const {
           getItineraryActivities,
 } = activitiesControllers;
 
-itinerariesRouter
+activitiesRouter
           .route(`/activities`)
           .get(getAllActivities)
           .post(uploadActivity);
 
-itinerariesRouter
+activitiesRouter
           .route(`/activities/:id`)
           .delete(deleteActivity)
           .put(modifyActivity)
           .get(getOneActivity);
 
-itinerariesRouter.route(`/itineraryActivities`).get(getItineraryActivities);
+activitiesRouter.route(`/itineraryActivities`).get(getItineraryActivities);
 
 module.exports = activitiesRouter;

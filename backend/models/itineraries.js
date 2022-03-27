@@ -11,6 +11,10 @@ const itinerariesSchema = new mongoose.Schema({
     hashtag: [{ type: String, required: true }],
     cityId: {type: mongoose.Schema.Types.ObjectId, ref: 'japancities'}, 
     likes: {type: Array},
+    comments:[{
+        comment: {type: String},
+        userID: {type:mongoose.Types.ObjectId, ref:"users"},
+    }],
       
   });
   const itineraries = mongoose.model("itinerarios", itinerariesSchema);
