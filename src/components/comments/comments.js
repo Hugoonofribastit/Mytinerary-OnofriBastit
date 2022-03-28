@@ -1,7 +1,5 @@
 
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import { connect } from "react-redux";
 import citiesActions from "../../Redux/actions/citiesActions";
 import itinerariesActions from '../../Redux/actions/itinerariesActions';
@@ -12,15 +10,11 @@ import activitiesActions from '../../Redux/actions/activitiesActions';
 
 
 const Comments = (props) => {
-    console.log(props) 
-    const [expanded, setExpanded] = React.useState(false);
-    const handleExpandClick = () => {
-      setExpanded(!expanded);
-    };
-
+   
+    
     const {id} = useParams()
     const input = useRef()
-    const [inputText, setInputText] = useState("")
+  
     const [modify, setModify] = useState(false)
     const [reload, setReload] = useState(false)
     
@@ -29,7 +23,7 @@ const Comments = (props) => {
       const commentData = {
         comment: input.current.value,
       }
-      console.log(modify)
+      
       setModify(!modify)
       await props.modifiComment(commentId,commentData)
       props.getOneItinerary(id)
@@ -44,22 +38,23 @@ const Comments = (props) => {
         commentId: commentId,
       }
       const awaitDelete = await props.deleteComment(props.itineraryId, commentData)
-      console.log(commentData)
-      console.log(awaitDelete)
+     
       
 
       if(awaitDelete.success) {
         props.findOneCity(id)
         props.itinerariesPerCity(id)
-        console.log("eliminadoOoOOo")
+        alert("your comment has been deleted")
+       /*  console.log("deleted") */
+
         // props.findOneCity(id)
       }
     }
   
    
   
-
-    console.log(props.comment.comment)
+/* 
+    console.log(props.comment.comment) */
         return (            
                   <>
                     {props.comment.userID?._id !== props.user?.id ?
@@ -92,7 +87,7 @@ const Comments = (props) => {
                             )
                             : <button id={props.comment._id} onClick={() => setModify(!modify)} className="btn btn-primary">Modify</button>
                           }
-                          <button id={props.commentId} onClick={() => eliminarComentario(props.commentId)} className="btn btn-primary btnComments">Eliminar</button>
+                          <button id={props.commentId} onClick={() => eliminarComentario(props.commentId)} className="btn btn-primary btnComments">Delete</button>
                         </div>
                       </div>
                     }

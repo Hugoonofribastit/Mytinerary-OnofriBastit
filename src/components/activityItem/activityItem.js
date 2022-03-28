@@ -2,7 +2,7 @@ import * as React from 'react';
 
 
 const ActivityItem = ({activity}) => {
-    console.log(activity)
+    /* console.log(activity) */
     return ( 
 <>
 

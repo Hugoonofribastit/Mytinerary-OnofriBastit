@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import citiesActions from "../../Redux/actions/citiesActions";
 import itinerariesActions from '../../Redux/actions/itinerariesActions';
 import commentsActions from '../../Redux/actions/commentsActions';
-import { useParams } from 'react-router-dom';
+/* import { useParams } from 'react-router-dom'; */
 import { useState, useEffect } from 'react';
 import activitiesActions from '../../Redux/actions/activitiesActions';
 import ActivityItem from '../../components/activityItem/activityItem';
@@ -43,10 +43,8 @@ const ItineraryItem = (props) => {
       setExpanded(!expanded);
     };
 
-    const {id} = useParams()
+   
     
-    const [inputText, setInputText] = useState("")
-    const [modify, setModify] = useState(false)
     const [reload, setReload] = useState(false)
     const [likes, setLikes] = useState(props.itinerary.likes)
     const[activities, setActivities] = useState([])
@@ -68,8 +66,8 @@ const ItineraryItem = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  console.log(props.activities)
-  console.log(props)
+ /*  console.log(props.activities)
+  console.log(props) */
 
     async function likesOrDislikes() {
       await props.likeDislike(props.id)

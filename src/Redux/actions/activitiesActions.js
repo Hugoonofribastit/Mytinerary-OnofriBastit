@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ACTIVITIES_GET } from './types';
+
 
 const activitiesActions = {
 
