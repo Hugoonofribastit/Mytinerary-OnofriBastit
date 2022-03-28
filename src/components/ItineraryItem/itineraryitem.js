@@ -18,6 +18,8 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import activitiesActions from '../../Redux/actions/activitiesActions';
 import ActivityItem from '../../components/activityItem/activityItem';
+import Comments from '../comments/comments';
+import Comment from '../comment/comment';
 
 
 const ExpandMore = styled((props) => {
@@ -49,14 +51,10 @@ const ItineraryItem = (props) => {
     const [likes, setLikes] = useState(props.itinerary.likes)
     const[activities, setActivities] = useState([])
   
-   /*   useEffect(() => {
-      props.getOneItinerary(id)
-      
-    }, [reload]) */
+ 
     useEffect(() => {
         
             props.getOneItinerary(props.id)
-            /* props.activityPerItinerary(id) */
             .then( response => setLikes(response.data.response.likes))
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!reload]);
@@ -73,55 +71,10 @@ const ItineraryItem = (props) => {
   console.log(props.activities)
   console.log(props)
 
-    const cargarComentario = async () => {
-      const commentData = {
-        comment: inputText,
-      }
-      console.log(commentData)
-      const cargarAwait = await props.addComment(props.id, commentData)
-      console.log(cargarAwait.response.data.success)
-      if(cargarAwait.response.data.success) {
-        props.getOneItinerary(id)
-        setReload(!reload)
-        setInputText("")
-      }
-     }
-    
-     
-  
-    async function modificarComentario(event) {
-      const commentData = {
-        commentID: event.target.id,
-        comment: inputText,
-      }
-      console.log(modify)
-      setModify(!modify)
-      await props.modifiComment(commentData)
-      props.getOneItinerary(id)
-      setReload(!reload)
-  
-    }
-    async function eliminarComentario(commentId) {
-      const commentData = {
-        commentId: commentId,
-      }
-      const awaitDelete = await props.deleteComment(props.id, commentData)
-      console.log(commentData)
-      console.log(awaitDelete)
-      // if(awaitDelete.success) {
-      //   console.log("eliminadoOoOOo")
-      // }
-      // props.getOneItinerary(id)
-      // setReload(!reload)
-    }
-  
     async function likesOrDislikes() {
       await props.likeDislike(props.id)
-      props.getOneItinerary(id)
       setReload(!reload)
-    }
-    /* console.log(props)
-    console.log(props.user) */
+     }    
   
 
 
@@ -218,51 +171,13 @@ const ItineraryItem = (props) => {
                 (<div></div>)}
               </div>
 
-
-
-             {props.itinerary?.comments.map(comment =>
-                  <>
-                    {comment.userID?._id !== props.user?.id ?
-                      <div className="card cardComments " key={comment._id}>
-                        <div className="card-header cardHeader">
-                          {comment.userID?.name}
-                        </div>
-                        <div className="card-body">
-                          <p className="card-text cardText">{comment.comment}</p>
-                        </div>
-                      </div> :
-
-                      <div className="card cardComments">
-                        <div className="card-header cardHeader">
-                          <p>{comment.userID.name}</p> 
-                        </div>
-                        <div className="card-body ">
-                          <div type="text" className="card-text textComments" onInput={(event) => setModify(event.currentTarget.textContent)} >{comment.comment}</div>
-                          <button id={comment._id} onClick={modificarComentario} className="btn btn-primary btnComments">Modificar</button>
-                          <button id={comment._id} onClick={() => eliminarComentario(comment._id)} className="btn btn-primary btnComments">Eliminar</button>
-                        </div>
-                      </div>
-                    }
-                  </>
-                )}
-
-                {props.user ?
-                  <div className="card cardComments">
-                    <div className="card-header cardHeaderNew">
-                      DEJANOS TU COMENTARIO
-                    </div>
-                    <div className="card-body ">
-                      <div id="nuevoComentario" placeholder='Ingresa aqui tu comentario...' onInput={(event) => setInputText(event.currentTarget.textContent)} contentEditable className="card-text textComments border border-dark mb-3" ></div>
-                      <button onClick={cargarComentario} className="btn btn-primary btnComments">Cargar</button>
-                    </div>
-                  </div> :
-                  <h1>Realiza singIn y dejanos tu comentario</h1>
+              {props.itinerary.comments.map((comment) => (
+                <Comments  itineraryId={props.id} commentId={comment._id} comment={comment} key={comment._id}  />
+                  ))
+                          
                 }
-            
-                
-                
-                
-              </CardContent>
+                <Comment itineraryId={props.id}/>
+              </CardContent>              
             </Collapse>
           </Card>
                
