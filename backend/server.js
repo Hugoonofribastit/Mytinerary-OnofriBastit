@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const Router = require("./routes/routes");
 const itinerariesRouter = require("./routes/itinerariesroutes");
+const activitiesRouter = require("./routes/activitiesroutes");
 const passport = require("passport")
 
 const PORT = 4000;
@@ -16,5 +17,5 @@ app.use(express.json());
 app.use(passport.initialize())
 app.use("/api", Router);
 app.use("/api", itinerariesRouter);
-
+app.use("/api", activitiesRouter);
 app.listen(PORT, () => console.log("Server ready on PORT " + PORT));

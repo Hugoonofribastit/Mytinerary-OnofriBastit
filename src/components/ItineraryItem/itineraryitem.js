@@ -21,6 +21,7 @@ import ActivityItem from '../../components/activityItem/activityItem';
 
 
 const ExpandMore = styled((props) => {
+  /* console.log(props) */
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -34,16 +35,19 @@ const ExpandMore = styled((props) => {
   
 
 const ItineraryItem = (props) => {
+  /* console.log(props) */
     const [expanded, setExpanded] = React.useState(false);
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
 
-    const { id } = useParams()
+    const {id} = useParams()
     
     const [inputText, setInputText] = useState("")
-    const [modifi, setModifi] = useState()
+    const [modify, setModify] = useState(false)
     const [reload, setReload] = useState(false)
+    const [likes, setLikes] = useState(props.itinerary.likes)
+    const[activities, setActivities] = useState([])
   
    /*   useEffect(() => {
       props.getOneItinerary(id)
@@ -51,38 +55,64 @@ const ItineraryItem = (props) => {
     }, [reload]) */
     useEffect(() => {
         
-            props.getOneItinerary(id)
-            props.activityPerItinerary(id)
+            props.getOneItinerary(props.id)
+            /* props.activityPerItinerary(id) */
+            .then( response => setLikes(response.data.response.likes))
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-   
-    async function cargarComentario(event) {
-      
+  }, [!reload]);
+
+  useEffect(()=> {
+
+    props.activityPerItinerary(props.id).then(
+      res=>{setActivities(res.response)}
+
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
+  console.log(props.activities)
+  console.log(props)
+
+    const cargarComentario = async () => {
       const commentData = {
-        itinerary: props.itineraries.id,
         comment: inputText,
       }
+      console.log(commentData)
+      const cargarAwait = await props.addComment(props.id, commentData)
+      console.log(cargarAwait.response.data.success)
+      if(cargarAwait.response.data.success) {
+        props.getOneItinerary(id)
+        setReload(!reload)
+        setInputText("")
+      }
+     }
     
-      await props.addComment(commentData)
-        .then(response => setInputText(""))
-      document.querySelector("#nuevoComentario").textContent = ""
-      
      
-    }
   
     async function modificarComentario(event) {
       const commentData = {
         commentID: event.target.id,
-        comment: modifi,
+        comment: inputText,
       }
-      console.log(modifi)
+      console.log(modify)
+      setModify(!modify)
       await props.modifiComment(commentData)
+      props.getOneItinerary(id)
       setReload(!reload)
   
     }
-    async function eliminarComentario(event) {
-      await props.deleteComment(event.target.id)
-      setReload(!reload)
+    async function eliminarComentario(commentId) {
+      const commentData = {
+        commentId: commentId,
+      }
+      const awaitDelete = await props.deleteComment(props.id, commentData)
+      console.log(commentData)
+      console.log(awaitDelete)
+      // if(awaitDelete.success) {
+      //   console.log("eliminadoOoOOo")
+      // }
+      // props.getOneItinerary(id)
+      // setReload(!reload)
     }
   
     async function likesOrDislikes() {
@@ -90,8 +120,8 @@ const ItineraryItem = (props) => {
       props.getOneItinerary(id)
       setReload(!reload)
     }
-    console.log(props)
-    console.log(props.user)
+    /* console.log(props)
+    console.log(props.user) */
   
 
 
@@ -151,13 +181,13 @@ const ItineraryItem = (props) => {
             <div className="likeDislike d-flex">
 
                         {props.user ?
-                          (<button onClick={likesOrDislikes}>{props.itinerary?.likes.includes(props.user.id) ?
+                          (<button onClick={likesOrDislikes}>{likes.includes(props.user.id) ?
                             <span style={{ color: "red", fontSize:30 }} className="material-icons">favorite</span> :
                             <span style={{  fontSize:30 }}className="material-icons">favorite_border</span>}</button>)
 
                           : (<span style={{  fontSize:30 }} className="material-icons">favorite_border</span>)}
 
-                        {<h3 style={{  color:"black ",fontSize:30 }}>{props.itinerary?.likes.length}</h3>}
+                        {<h3 style={{  color:"black ",fontSize:30 }}>{likes.length}</h3>}
             </div>
               
              {/*  <IconButton aria-label="add to favorites">
@@ -178,11 +208,11 @@ const ItineraryItem = (props) => {
 
 
           <div className="d-flex flex-column">
-        {props.activities?.length !== 0 ?  
+        {activities?.length !== 0 ?  
         ( 
-           props.activities.map(activity => (
+           activities.map(activity => (
             
-                <ActivityItem itinerary={activity} key={activity._id} />
+                <ActivityItem activity={activity} key={activity._id} />
                
                 ))):
                 (<div></div>)}
@@ -195,7 +225,7 @@ const ItineraryItem = (props) => {
                     {comment.userID?._id !== props.user?.id ?
                       <div className="card cardComments " key={comment._id}>
                         <div className="card-header cardHeader">
-                          {comment.userID?.name} {comment.date}
+                          {comment.userID?.name}
                         </div>
                         <div className="card-body">
                           <p className="card-text cardText">{comment.comment}</p>
@@ -204,13 +234,12 @@ const ItineraryItem = (props) => {
 
                       <div className="card cardComments">
                         <div className="card-header cardHeader">
-                          <p>{comment.userID.name}</p> <p>{new Date(comment.date).toUTCString()}</p>
+                          <p>{comment.userID.name}</p> 
                         </div>
                         <div className="card-body ">
-                        
-                          <div type="text" className="card-text textComments" onInput={(event) => setModifi(event.currentTarget.textContent)} contentEditable >{comment.comment}</div>
+                          <div type="text" className="card-text textComments" onInput={(event) => setModify(event.currentTarget.textContent)} >{comment.comment}</div>
                           <button id={comment._id} onClick={modificarComentario} className="btn btn-primary btnComments">Modificar</button>
-                          <button id={comment._id} onClick={eliminarComentario} className="btn btn-primary btnComments">Eliminar</button>
+                          <button id={comment._id} onClick={() => eliminarComentario(comment._id)} className="btn btn-primary btnComments">Eliminar</button>
                         </div>
                       </div>
                     }

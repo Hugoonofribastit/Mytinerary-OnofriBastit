@@ -8,6 +8,7 @@ const activityController = {
                               response: data,
                     });
           },
+          
           getItineraryActivities: async (req, res) => {
                     /*   const {cityId} = req.query
         const data= await Itinerary.find().populate("cityId")
@@ -16,9 +17,12 @@ const activityController = {
         }) */
                     try {
                               const activityPerItinerary = await Activity.find({
-                                        cityId: req.query.cityId,
+                                itineraryId: req.params.id,
                               });
-                              res.json({ response: activityPerItinerary });
+
+                              res.json({ 
+                                success:true,  
+                                response: activityPerItinerary });
                     } catch (error) {
                               console.log(error);
                     }

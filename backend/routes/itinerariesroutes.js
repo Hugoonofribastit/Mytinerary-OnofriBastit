@@ -36,14 +36,20 @@ itinerariesRouter.route(`/cityItineraries`).get(getCityItineraries);
 
 //COMMENTS REQUIRES
 const commentsControllers = require('../controllers/commentsControllers');
-const {addComment, modifiComment,deleteComment}= commentsControllers
+const {addComment, modifyComment,deleteComment}= commentsControllers
 //PLACES ROUTES
 itinerariesRouter.route('/itineraries/comment')
-.post(passport.authenticate('jwt',{ session: false }),addComment)
-.put(passport.authenticate('jwt',{ session: false }),modifiComment)
+
+/* .put(passport.authenticate('jwt',{ session: false }),modifyComment) */
 
 itinerariesRouter.route('/itineraries/comment/:id')
-.post(passport.authenticate('jwt',{ session: false }),deleteComment)
+/* .delete(passport.authenticate('jwt',{ session: false }),deleteComment) */
+.put(passport.authenticate('jwt',{ session: false }),modifyComment)
+.post(passport.authenticate('jwt',{ session: false }),addComment)
+
+itinerariesRouter.route('/itineraries/comment/:id/:comment')
+.delete(passport.authenticate('jwt',{ session: false }),deleteComment)
+
 
 
 

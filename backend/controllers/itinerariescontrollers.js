@@ -17,7 +17,7 @@ const itineraryController = {
                     try {
                               const itineraryPerCity = await Itinerary.find({
                                         cityId: req.query.cityId,
-                              });
+                              }).populate("comments.userID");
                               res.json({ response: itineraryPerCity });
                     } catch (error) {
                               console.log(error);

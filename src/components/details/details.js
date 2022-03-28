@@ -59,7 +59,7 @@ const Details = (props) =>{
     }
     const mapStateToProps = (state) => {
         return {
-                   city: state.Data.city,
+                  city: state.Data.city,
                   itineraries: state.itinerariesReducers.itineraries, 
                   
                    

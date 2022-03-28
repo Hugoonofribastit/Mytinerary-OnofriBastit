@@ -16,8 +16,9 @@ itinerariesPerCity: (id) => {
 
 getOneItinerary: (id) => {
     return async (dispatch, getState) => {
-        
+        console.log(id)
         const res = await axios.get('http://localhost:4000/api/itineraries/'+id)
+        console.log(res)
        return res
     }
 },
