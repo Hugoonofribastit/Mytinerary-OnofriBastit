@@ -33,7 +33,10 @@ const Comments = (props) => {
       setModify(!modify)
       await props.modifiComment(commentId,commentData)
       props.getOneItinerary(id)
+      props.findOneCity(id)
+      props.itinerariesPerCity(id)
       setReload(!reload)
+      
   
     }
     async function eliminarComentario(commentId) {
@@ -43,8 +46,11 @@ const Comments = (props) => {
       const awaitDelete = await props.deleteComment(props.itineraryId, commentData)
       console.log(commentData)
       console.log(awaitDelete)
+      
 
       if(awaitDelete.success) {
+        props.findOneCity(id)
+        props.itinerariesPerCity(id)
         console.log("eliminadoOoOOo")
         // props.findOneCity(id)
       }

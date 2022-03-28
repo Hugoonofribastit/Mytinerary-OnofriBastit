@@ -27,9 +27,10 @@ const Comment = (props) => {
       const cargarAwait = await props.addComment(props.itineraryId, commentData)
       console.log(cargarAwait.response.data.success)
       if(cargarAwait.response.data.success) {
-        props.findOneCity(id)
-        setReload(!reload)
         setInputText("")
+        props.findOneCity(id)
+        props.itinerariesPerCity(id)
+        setReload(!reload)
       }
      }
 
@@ -41,7 +42,9 @@ const Comment = (props) => {
                       DEJANOS TU COMENTARIO
                     </div>
                     <div className="card-body ">
-                      <div id="nuevoComentario" placeholder='Ingresa aqui tu comentario...' onInput={(event) => setInputText(event.currentTarget.textContent)} contentEditable className="card-text textComments border border-dark mb-3" ></div>
+                      <div >
+                        <input id="nuevoComentario" placeholder='Ingresa aqui tu comentario...' className="card-text textComments border border-dark mb-3" value={inputText} onChange={(event) => setInputText(event.target.value)} />
+                      </div>
                       <button onClick={cargarComentario} className="btn btn-primary btnComments">Cargar</button>
                     </div>
                   </div> :
