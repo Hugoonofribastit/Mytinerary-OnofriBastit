@@ -52,7 +52,7 @@ const ItineraryItem = (props) => {
     const[activities, setActivities] = useState([])
   
  
-    useEffect(() => {
+  useEffect(() => {
         
             props.getOneItinerary(props.id)
             .then( response => setLikes(response.data.response.likes))
@@ -159,8 +159,9 @@ const ItineraryItem = (props) => {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
 
-
-          <div className="d-flex flex-column">
+              <h3 className="text-center mb-3">Itinerary Activities</h3>
+          <div className="d-flex justify-content-center ">
+          
         {activities?.length !== 0 ?  
         ( 
            activities.map(activity => (

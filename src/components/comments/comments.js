@@ -86,11 +86,11 @@ const Comments = (props) => {
                           {modify 
                             ? (
                               <>
-                                <button id={props.comment._id} onClick={() => modificarComentario(props.commentId)} className="btn btn-primary btnComments">Confirmar Modificar</button>
-                                <button id={props.comment._id} onClick={() => setModify(!modify)} className="btn btn-primary">Cancelar</button>
+                                <button id={props.comment._id} onClick={() => modificarComentario(props.commentId)} className="btn btn-primary btnComments">Confirm Modify</button>
+                                <button id={props.comment._id} onClick={() => setModify(!modify)} className="btn btn-primary">Cancel</button>
                               </>
                             )
-                            : <button id={props.comment._id} onClick={() => setModify(!modify)} className="btn btn-primary">Modificar</button>
+                            : <button id={props.comment._id} onClick={() => setModify(!modify)} className="btn btn-primary">Modify</button>
                           }
                           <button id={props.commentId} onClick={() => eliminarComentario(props.commentId)} className="btn btn-primary btnComments">Eliminar</button>
                         </div>

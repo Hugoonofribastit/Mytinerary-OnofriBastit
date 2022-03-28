@@ -39,7 +39,7 @@ const Comment = (props) => {
             {props.user ?
                   <div className="card cardComments">
                     <div className="card-header cardHeaderNew">
-                      DEJANOS TU COMENTARIO
+                      LEAVE US YOUR COMMENT!
                     </div>
                     <div className="card-body ">
                       <div >
